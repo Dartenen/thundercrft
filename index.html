@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThunderCraft</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Підключення CSS файлу -->
+</head>
+<body class="cosmic-theme">
+    <div class="container">
+        <div class="title">
+            <div class="rounded-square">ТНС</div>
+        </div>
+        <div class="buttons">
+            <a href="https://thundercraft.onepage.me/product-page" class="main-button">Донат</a>
+            <a href="https://thundercraft.onepage.me/homepage-third-version">Гайди</a>
+            <a href="https://thundercraft.onepage.me/" class="main-button">Головна</a>
+            <a href="https://thundercraft-faq.onepage.me/thundercraft-faq">FAQ</a>
+            <a href="https://minecraft.org.ua/minecraft-servers/ThunderCraft/301">Голосувати</a>
+            <a href="#" class="theme-button" id="theme-toggle">Змінити тему</a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="main-text">ThunderCraft - Український політичний проєкт</div>
+        <div class="secondary-text">©️ Усі права захищені.</div>
+    </div>
+    <script>
+        // Функція для створення зірок і луни
+        const initCosmicTheme = () => {
+            const body = document.body;
+
+            // Створення зірок
+            for (let i = 0; i < 600; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                body.appendChild(star);
+            }
+
+            // Додавання луни
+            const moon = document.createElement('div');
+            moon.classList.add('moon');
+            body.appendChild(moon);
+        };
+
+        // Перемикання тем
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('cosmic-theme')) {
+                body.classList.remove('cosmic-theme');
+                body.classList.add('vanilla-theme');
+                // Очищення зірок та луни при перемиканні на ванільну тему
+                document.querySelectorAll('.star, .moon').forEach(el => el.remove());
+            } else if (body.classList.contains('vanilla-theme')) {
+                body.classList.remove('vanilla-theme');
+                body.classList.add('japanese-theme');
+                // Додавання сонця і гір при перемиканні на японську тему
+                const sun = document.createElement('div');
+                sun.classList.add('sun');
+                body.appendChild(sun);
+
+                const mountains = document.createElement('div');
+                mountains.classList.add('mountains');
+                body.appendChild(mountains);
+            } else if (body.classList.contains('japanese-theme')) {
+                body.classList.remove('japanese-theme');
+                body.classList.add('cosmic-theme');
+                // Очищення сонця і гір при перемиканні на космічну тему
+                document.querySelectorAll('.sun, .mountains').forEach(el => el.remove());
+                initCosmicTheme(); // Перезапуск функції для космічної теми
+            }
+        });
+
+        // Ініціалізація космічної теми при завантаженні сторінки
+        initCosmicTheme();
+    </script>
+</body>
+</html>
